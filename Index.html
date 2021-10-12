@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+        <script>
+            BAClasses = [
+                    'CSCI 12000 First Year Seminar',
+                    'CSCI 23000 Computing I',
+                    'MATH 15300 Algebra & Trigonometry I',
+                    'ENG W131 Reading, Writing and Inquiry',
+                    'Arts & Humanities/Social Sciences',
+                    
+                    'CSCI 24000 Computing II',
+                    'CSCI 34000 Discrete Computational Structures',
+                    'MATH 15400 Algebra & Trigonometry II',
+                    'CSCI-N211 Intro. to Databases',
+                    'COMM-R110 Fundamentals of Speech Communication',
+
+                    'CSCI 36200 Data Structures',
+                    'CSCI-N241 Fundamentals of Web Development',
+                    'STAT 30100 Elem. Statistical Methods I',
+                    'Life and Physical Science',
+                    'Arts & Humanities/Social Sciences',
+
+                    'CSCI-N361 Fund. of Software Project Mgmt.',
+                    'CSCI elective',
+                    'CSCI elective',
+                    'Life and Physical Science',
+                    'Arts & Humanities/Social Sciences',
+
+                    'CSCI Elective',
+                    'World Language',
+                    'Life and Physical Science (approved elective)',
+                    'TCM 32000 Written Comm. in Science & Industry',
+                    'Elective' ,
+                    'CSCI Elective',
+                    'CSCI Elective',
+                    'Life and Physical Science (approved elective)',
+                    'World Language',
+                    'Elective',
+                    'CSCI Elective',
+                    'CSCI Elective',
+                    'CSCI Elective',
+                    'INFO-I300 Human Computer Interaction',
+                    
+                    'CSCI 49500 Explorations in Applied Computing (Capstone)',
+                    'CSCI Elective',
+                    'Elective',
+                    'Elective'];
+
+                    BSClasses = [
+
+                    'CSCI 12000 Windows on Computer Science',
+                    'CSCI 23000 Computing I',
+                    'ENG W131 Reading, Writing and Inquiry',
+                    'MATH 16500 Analytic Geometry and Calculus I',
+                    'Arts & Humanities/Social Sciences (choose from list)',
+
+                    'CSCI 24000 Computing II',
+                    'CSCI 34000 Discrete Computational Structures',
+                    'MATH 16600 Analytic Geometry and Calculus II',
+                    'COMM-R110 Fundamentals of Speech Communication',
+                    'Social Sciences (choose from list)',
+
+                    'CSCI 36200 Data Structures',
+                    'CSCI Elective',
+                    'MATH 17100 Multidimensional Mathematics',
+                    'Life and Physical Science (approved elective)',
+                    'Arts & Humanities/Social Sciences (choose from list)',
+                    
+                    'CSCI 40200 Architecture of Computers',
+                    'CSCI elective',
+                    'MATH 35100 Elementary Linear Algebra',
+                    'Life and Physical Science (approved elective)',
+                    'Cultural Understanding (choose from list)',
+
+                    'CSCI 40300 Intro. to Operating Systems',
+                    'CSCI elective',
+                    'CSCI elective',
+                    'Statistics (approved elective)',
+                    'TCM 32000 Written Comm. in Science & Industry',
+
+                    'CSCI elective',
+                    'CSCI elective',
+                    'CSCI elective',
+                    'PHYS 15200 Mechanics',
+                    'General elective',
+                    'CSCI 48400 Theory of Computation',
+                    'CSCI elective',
+                    'CSCI elective',
+                    'CSCI elective',
+                    'General elective',
+
+                    'CSCI 49500 Explorations in Applied Computing (Capstone)',
+                    'CSCI elective',
+                    'Science elective',
+                    'General elective'
+                    ];
+                    function removeElement(id) {
+                        document.getElementById(id).innerText = "";
+                    }
+                    window.addEventListener('load', function () {
+                    let j = document.getElementById("DEG1");
+                    for(let i in BAClasses){
+                        j.innerHTML = j.innerHTML += "<a onclick='removeElement(" + i + ")' id=" + i + ">" + BAClasses[i] + "</a><br>"
+                    }
+                    j.innerHTML = j.innerHTML += "</p>";
+
+                    //degree 2
+                    let k = document.getElementById("DEG2");
+                    for(let i in BSClasses){
+                        k.innerHTML = k.innerHTML += "<a onclick='removeElement(" + (parseInt(i) + parseInt(100)) + ")' id=" + (parseInt(i) + parseInt(100)) + ">" + BSClasses[i] + "</a><br>"
+                    }
+                    k.innerHTML = k.innerHTML += "</p>";
+                });
+                    function importDegree(deg, input) {
+                        let degreeChoice = deg;
+                        if(degreeChoice == 1) {
+                            //we're editing DEG1
+                            let newElements = parseInput(input);
+                            let k = document.getElementById("DEG1");
+                            k.innerHTML = "<p>";
+                            for(var i in newElements) {
+                                k.innerHTML = k.innerHTML += "<a onclick='removeElement(" + i + ")' id=" + i + ">" + newElements[i] + "</a><br>"
+                            }
+                            
+                            k.innerHTML = k.innerHTML += "</p>";
+                        }
+                        if(degreeChoice == 2) {
+                            //we're editing DEG2
+                            let newElements = parseInput(input);
+                            let k = document.getElementById("DEG2");
+                            k.innerHTML = "<p>";
+                            for(var i in newElements) {
+                                k.innerHTML = k.innerHTML += "<a onclick='removeElement(" + (parseInt(i) + parseInt(100)) + ")' id=" + (parseInt(i) + parseInt(100)) + ">" + newElements[i] + "</a><br>"
+                            }
+                            
+                            k.innerHTML = k.innerHTML += "</p>";
+                        }
+                    }
+                    function parseInput(text) {
+                        let userInput = text;
+                        //text should be content copy and pasted from https://bulletins.iu.edu/iupui/2019-2020/schools/purdue-science/departments/computer-info-science/bachelor-science.shtml
+                        //remove unnecessary words and numbers
+                        let deleteWords = [
+                            'freshman', 'sophomore', 'senior', 'junior', 'semester', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'total', 'Semester', 'Total', 'Year', 'credit', 'hours', '( )', 'hour'
+                        ];
+                        for(var i in deleteWords) {
+                            let targetWord = deleteWords[i];
+                            let targetWordCapitalLetter = deleteWords[i].charAt(0).toUpperCase() + deleteWords[i].slice(1);
+                            for(var m = 0; m < 50; m++) {
+                                userInput = userInput.replace(targetWord, '');
+                                userInput = userInput.replace(targetWordCapitalLetter, '');
+                                if(m > 12) {
+                                    for(var n = 0; n < 30; n++) {
+                                        userInput = userInput.replace(n, '');
+                                    }
+                                }
+                            }
+                        }
+                        //remove unnecessary whitespaces
+                        userInput = userInput.split("\n");
+                        userInput = userInput.filter(function(str) {
+                            return /\S/.test(str);
+                        });
+                        return userInput;
+                    }
+                    
+
+        </script>
+    </head>
+    <body>
+
+
+        <div class="jumbotron text-center">
+            <h1>IUPUI Degree Maps</h1>
+            <p>Click on a course to hide it!</p> 
+          </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                <h3>Applied Computer Science</h3>
+                
+                <center>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#impDeg1">
+                        Import Degree 1
+                      </button></center>
+                <p id="DEG1">
+                    
+                    
+                </div>
+                <div class="col-sm-4">
+                <h3>Computer Science</h3>
+                
+                <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#impDeg2">
+                    Import Degree 2
+                  </button></center>
+                <p id="DEG2">
+                </div>
+            </div>
+            <!-- We need to receive text from the user and assign it to DEG2
+                 By the end, we would like to have them able to set each degree, to compare them.
+            
+            -->
+
+              <!-- Modal - Import Degree 1 -->
+              <div class="modal fade" id="impDeg1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Import Degree 1</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-floating">
+                            <span class="input-group-text">Degree 1 Classes</span><br>
+                            <textarea id="deg1input" class="form-control" style="height: 300px; width: 500px;"></textarea>
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button onclick="importDegree(1, document.getElementById('deg1input').value)" type="button" class="btn btn-primary" >Save changes</button>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+
+
+              <!-- Modal - Import Degree 2 -->
+              <div class="modal fade" id="impDeg2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel2">Import Degree 2</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-floating">
+                            <span class="input-group-text">Degree 2 Classes</span><br>
+                            <textarea id="deg2input" class="form-control" style="height: 300px; width: 500px;"></textarea>
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button onclick="importDegree(2, document.getElementById('deg2input').value)" type="button" class="btn btn-primary" >Save changes</button>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+        </div>
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
